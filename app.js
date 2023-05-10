@@ -195,7 +195,7 @@ function gameOver() {
 }
 // All guessing functions point to this, which checks if the game is over and prepares for the next round or game
 function endRound() {
-	// Disable all buttons until 
+	// Disable all choice buttons until the player moves to the next round
 	document.getElementById("advance-button").classList.remove("inactive");
 	document.getElementById("advance-button").onclick = function() {newRound()};
 	document.getElementById("advance-button").innerText = "Next Round";
