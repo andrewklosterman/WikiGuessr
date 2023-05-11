@@ -5,23 +5,23 @@ let articleOneLength;
 let articleTwoLength;
 let score = 0;
 let lives = 3;
+// When loading the page, two articles are shown as a preview
+// Create a variable of today's date to generate the first article on the intro screen
+let today = new Date();
+let dd = String(today.getDate()).padStart(2,"0");
+let mm = String(today.getMonth() + 1).padStart(2,"0");
+let yyyy = today.getFullYear().toString();
+// Create a variable roughly one month ago to count article views from and generate the second article on the intro screen
+viewsDate = new Date();
+let viewsDD = String(viewsDate.getDate()).padStart(2,"0");
+if (viewsDD > 28) {viewsDD = 28;};
+let viewsMM = String(viewsDate.getMonth() + 1).padStart(2,"0");
+if (viewsMM === "01") {viewsMM = "12";}
+else {viewsMM = String(viewsDate.getMonth()).padStart(2,"0");}
+let viewsYYYY = viewsDate.getFullYear().toString();
+viewsDate = viewsYYYY + viewsMM + viewsDD + "00";
 // Puts any dynamic content onto the page when it is loaded
 async function buildPage() {
-	// When loading the page, two articles are shown as a preview
-	// Create a variable of today's date to generate the first article on the intro screen
-	let today = new Date();
-	let dd = String(today.getDate()).padStart(2,"0");
-	let mm = String(today.getMonth() + 1).padStart(2,"0");
-	let yyyy = today.getFullYear().toString();
-	// Create a variable roughly one month ago to count article views from and generate the second article on the intro screen
-	viewsDate = new Date();
-	let viewsDD = String(viewsDate.getDate()).padStart(2,"0");
-	if (viewsDD > 28) {viewsDD = 28;};
-	let viewsMM = String(viewsDate.getMonth() + 1).padStart(2,"0");
-	if (viewsMM === "01") {viewsMM = "12";}
-	else {viewsMM = String(viewsDate.getMonth()).padStart(2,"0");}
-	let viewsYYYY = viewsDate.getFullYear().toString();
-	viewsDate = viewsYYYY + viewsMM + viewsDD + "00";
 	// The first article displayed on the intro screen is today's featured article from Wikipedia. 
 	let previewTodayURL = "https://api.wikimedia.org/feed/v1/wikipedia/en/featured/" + yyyy + "/" + mm + "/" + dd;
 	let previewTodayReq = await fetch(previewTodayURL);
